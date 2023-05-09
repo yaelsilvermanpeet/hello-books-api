@@ -4,7 +4,7 @@ from flask import Blueprint, jsonify, make_response, request, abort
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
-@books_bp.route("", methods=["GET", "POST"])
+@books_bp.route("", methods=["GET"])
 def handle_books():
     if request.method == "GET":
         books = Book.query.all()
@@ -16,4 +16,3 @@ def handle_books():
                 "description": book.description
             })
         return jsonify(books_response)
-    elif request.method == "POST":
